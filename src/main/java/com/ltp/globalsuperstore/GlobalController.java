@@ -11,4 +11,9 @@ public class GlobalController {
         model.addAttribute("categories", Constants.CATEGORIES);
         return "form";
     }
+
+    @GetMapping("/inventory")
+    public String getInventory() {
+        return "inventory";
+    }
 }
