@@ -10,7 +10,7 @@
         </div>
         <div class="container">    
             <h2> Global Superstore </h2>
-            <form method="post" th:object="${item}" th:action="@{/}" >
+            <form method="post" th:object="${item}" th:action="@{/submitItem}" >
                 <select class="select" th:field="*{category}" >
                     <option value="">Choose Category</option>
                     <option th:each = "category : ${categories}" th:text = "${category}" th:value = "${category}" ></option>

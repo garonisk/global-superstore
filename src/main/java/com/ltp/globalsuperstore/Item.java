@@ -1,5 +1,7 @@
 package com.ltp.globalsuperstore;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 
 public class Item {
@@ -8,7 +10,10 @@ public class Item {
     private String name;
     private Double price;
     private Double discount;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+
     private Date date;
+
 
     public Item() {
     }
