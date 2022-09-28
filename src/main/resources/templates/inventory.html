@@ -22,9 +22,9 @@
               <tr th:each = "item : ${items}">
                  <td th:text="${item.category}"></th>
                  <td th:text="${item.name}">Table</td>
-                 <td type="currency" th:text="${item.price}"></td>
-                 <td type="currency" th:text="${item.discount}"></td>
-                 <td type="date" th:text="${item.date}"></td>
+                 <td th:text="${#numbers.formatCurrency(item.price)}"></td>
+                 <td th:text="${#numbers.formatCurrency(item.discount)}"></td>
+                 <td type="date" th:text="${#dates.format(item.date , 'yyyy-MM-dd')}"></td>
                  <td>
                     <a role="button" style="color:white; background-color: #263238" class="table-button">Update</a>
                  </td>
