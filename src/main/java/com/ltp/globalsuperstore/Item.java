@@ -3,6 +3,7 @@ package com.ltp.globalsuperstore;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
+import java.util.UUID;
 
 public class Item {
 
@@ -13,13 +14,23 @@ public class Item {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
 
     private Date date;
+    private String id;
 
 
     public Item() {
+        this.id = UUID.randomUUID().toString();
     }
 
     public String getCategory() {
         return category;
+    }
+
+    public String getId() {
+        return this.id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public void setCategory(String category) {
