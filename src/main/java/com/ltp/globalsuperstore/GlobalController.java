@@ -17,12 +17,14 @@ public class GlobalController {
         return "form";
     }
 
+    private List<Item> items = new ArrayList<Item>();
+
     @GetMapping("/inventory")
-    public String getInventory() {
+    public String getInventory(Model model) {
+        model.addAttribute("items",items);
         return "inventory";
     }
 
-    private List<Item> items = new ArrayList<Item>();
 
     @PostMapping("/submitItem")
     public String handleSubmit(Item item) {
