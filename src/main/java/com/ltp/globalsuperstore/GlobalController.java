@@ -30,7 +30,12 @@ public class GlobalController {
 
     @PostMapping("/submitItem")
     public String handleSubmit(Item item) {
-        items.add(item);
+        int index = getIndexFromId(item.getId());
+        if (index == Constants.NOT_FOUND) {
+            items.add(item);
+        } else {
+            items.set(index,item);
+        }
         return "redirect:/inventory";
     }
 
