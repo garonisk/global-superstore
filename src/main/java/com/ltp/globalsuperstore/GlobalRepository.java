@@ -1,8 +1,11 @@
 package com.ltp.globalsuperstore;
 
+import org.springframework.stereotype.Repository;
+
 import java.util.ArrayList;
 import java.util.List;
 
+@Repository
 public class GlobalRepository {
     private List<Item> items = new ArrayList<>();
 

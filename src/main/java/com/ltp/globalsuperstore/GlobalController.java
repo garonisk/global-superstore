@@ -1,5 +1,6 @@
 package com.ltp.globalsuperstore;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -13,7 +14,11 @@ import javax.validation.Valid;
 @Controller
 public class GlobalController {
 
-    GlobalService globalService = new GlobalService();
+    GlobalService globalService;
+    @Autowired
+    public GlobalController(GlobalService globalService) {
+        this.globalService = globalService;
+    }
     @GetMapping("/")
     public String getForm(Model model, @RequestParam (required = false) String id){
         model.addAttribute("item" , globalService.getItemFromId(id));
