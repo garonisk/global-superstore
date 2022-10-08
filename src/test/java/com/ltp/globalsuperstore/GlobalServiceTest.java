@@ -8,13 +8,11 @@ import org.mockito.junit.MockitoJUnitRunner;
 import java.util.Date;
 
 import java.util.Arrays;
-import java.util.Date;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
-@RunWith(MockitoJUnitRunner.class)
+@RunWith(MockitoJUnitRunner.Silent.class)
 public class GlobalServiceTest {
 
     @Mock
@@ -25,7 +23,7 @@ public class GlobalServiceTest {
 
     @Test
     public void ItemIndexFromIdTest(){
-        Item item = new Item("Furniture","Couch",100d,10d,new java.util.Date(System.currentTimeMillis()));
+        Item item = new Item("Furniture","Couch",100d,10d,new Date(2021-10-11));
         when(globalRepository.getItems()).thenReturn(Arrays.asList(item));
         when(globalRepository.getItem(0)).thenReturn(item);
 
@@ -38,7 +36,7 @@ public class GlobalServiceTest {
 
     @Test
     public void returnItemByIdTest(){
-        Item item = new Item("Furniture","Couch",100d,10d,new java.util.Date(System.currentTimeMillis()));
+        Item item = new Item("Furniture","Couch",100d,10d,new Date(2021-10-11));
         when(globalRepository.getItems()).thenReturn(Arrays.asList(item));
         when(globalRepository.getItem(0)).thenReturn(item);
 
@@ -49,18 +47,18 @@ public class GlobalServiceTest {
 
     @Test
     public void addItemTest(){
-        Item item = new Item("Furniture","Couch",100d,10d,new java.util.Date(System.currentTimeMillis()));
+        Item item = new Item("Furniture","Couch",100d,10d,new Date(2021-10-11));
         when(globalRepository.getItems()).thenReturn(Arrays.asList(item));
         when(globalRepository.getItem(0)).thenReturn(item);
 
-        Item newItem = new Item("Technology","Phone",300d,70d,new java.util.Date(System.currentTimeMillis()));
+        Item newItem = new Item("Technology","Phone",300d,70d,new Date(2021-10-11));
         globalService.addItem(newItem);
         verify(globalRepository,times(1)).addItem(newItem);
     }
 
     @Test
     public void updateItemTest(){
-        Item item = new Item("Furniture","Couch",100d,10d,new java.util.Date(System.currentTimeMillis()));
+        Item item = new Item("Furniture","Couch",100d,10d,new Date(2021-10-11));
         when(globalRepository.getItems()).thenReturn(Arrays.asList(item));
         when(globalRepository.getItem(0)).thenReturn(item);
 

@@ -4,10 +4,13 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+
+
 
 import static org.junit.Assert.assertNotNull;
 
@@ -30,6 +33,21 @@ class GlobalSuperstoreApplicationTests {
 			.andExpect(status().is2xxSuccessful())
 			.andExpect(view().name("form"))
 			.andExpect(model().attributeExists("item"));
+	}
+
+	@Test 
+	public void testSuccessfulSubmission() throws Exception {
+
+		RequestBuilder request = MockMvcRequestBuilders.post("/submitItem")
+			.param("category", "furniture")
+			.param("name", "couch")
+			.param("price", String.valueOf(100d))
+			.param("discount", String.valueOf(100d))
+			.param("date","2021-10-11") ;
+			
+
+		mockMvc.perform(request)
+			.andExpect(status().is3xxRedirection());
 	}
 
 }
