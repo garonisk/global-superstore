@@ -42,12 +42,38 @@ class GlobalSuperstoreApplicationTests {
 			.param("category", "furniture")
 			.param("name", "couch")
 			.param("price", String.valueOf(100d))
-			.param("discount", String.valueOf(100d))
+			.param("discount", String.valueOf(10d))
 			.param("date","2021-10-11") ;
 			
 
 		mockMvc.perform(request)
-			.andExpect(status().is3xxRedirection());
+			.andExpect(status().is3xxRedirection())
+			.andExpect(redirectedUrl("/inventory"));
+	}
+
+	@Test
+	public void unSuccessfulSubmision() throws Exception {
+
+		RequestBuilder request = MockMvcRequestBuilders.post("/submitItem")
+				.param("category", "  ")
+				.param("name", "  ")
+				.param("price", String.valueOf(100d))
+				.param("discount", String.valueOf(10d))
+				.param("date", "2021-10-11");
+
+		mockMvc.perform(request)
+				.andExpect(status().is2xxSuccessful())
+				.andExpect(view().name("form"));
+	}
+	@Test
+	public void testGetItems() throws Exception {
+		RequestBuilder request = MockMvcRequestBuilders.get("/inventory");
+		mockMvc.perform(request)
+				.andExpect(status().is2xxSuccessful())
+				.andExpect(view().name("inventory"))
+				.andExpect(model().attributeExists("items"));
+
+
 	}
 
 }

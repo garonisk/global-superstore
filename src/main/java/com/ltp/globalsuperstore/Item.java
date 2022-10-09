@@ -15,11 +15,14 @@ public class Item {
     @NotBlank(message = "Name cannot be blank")
     private String name;
     @Min(value = 0 , message = "Price cannot be negative")
+
+
     private Double price;
     @Min(value = 0 , message = "Discount cannot be negative")
 
     private Double discount;
     @Past(message = "Date should be in the past")
+
     @DateTimeFormat(pattern = "yyyy-MM-dd")
 
     private Date date;
